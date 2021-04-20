@@ -23,11 +23,32 @@ class MyApiView(APIView):
         serializer.save()
         return Response('created', status=status.HTTP_201_CREATED)
 
-    def patch(self, *args, **kwargs):
-        key = self.request.query_params.get('id')
-        office = OfficeModel.objects.get(pk=key)
+
+class ReadUpdate(APIView):
+    def get(self, *args, **kwargs):
+        try:
+            id = kwargs.get('id')
+            office = OfficeModel.objects.get(pk=id)
+            serializer = OfficeSerializer(office, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception:
+            return Response('Office not found', status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, *args, **kwargs):
+        id = kwargs.get('id')
+        office = OfficeModel.objects.get(pk=id)
         data = self.request.data
-        serializer = OfficeSerializer(office, data=data)
+        serializer = OfficeSerializer(instance=office, data=data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save()
+        return Response('updated', status=status.HTTP_200_OK)
+
+    def patch(self, *args, **kwargs):
+        id = kwargs.get('id')
+        office = OfficeModel.objects.get(pk=id)
+        data = self.request.data
+        serializer = OfficeSerializer(instance=office, data=data, partial=True)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save()
