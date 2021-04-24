@@ -15,6 +15,7 @@ class EmployeeModel(models.Model):
     name = models.CharField(max_length=30)
     age = models.IntegerField
     city = models.CharField(max_length=30)
+    office = models.OneToOneField(OfficeModel, on_delete=models.CASCADE)          # One to One    для розширення таблиці
 
     class Meta:
         db_table = 'employees'
