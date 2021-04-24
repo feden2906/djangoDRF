@@ -9,3 +9,12 @@ class OfficeModel(models.Model):
 
     class Meta:
         db_table = 'offices'
+
+
+class EmployeeModel(models.Model):
+    name = models.CharField(max_length=30)
+    age = models.IntegerField
+    city = models.CharField(max_length=30)
+
+    class Meta:
+        db_table = 'employees'
