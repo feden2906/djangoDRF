@@ -25,6 +25,12 @@ class MyApiView(APIView):
 
 
 class ReadUpdate(APIView):
+    def delete(self, *args, **kwargs):
+        id = kwargs.get('id')
+        office = OfficeModel.objects.get(pk=id)
+        office.delete()
+        return Response('ok', status.HTTP_200_OK)
+
     def get(self, *args, **kwargs):
         try:
             id = kwargs.get('id')
@@ -53,3 +59,4 @@ class ReadUpdate(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         serializer.save()
         return Response('updated', status=status.HTTP_200_OK)
+
