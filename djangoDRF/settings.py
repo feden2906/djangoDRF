@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # My apps
-    'first_app',
+    'office',
 ]
 
 MIDDLEWARE = [

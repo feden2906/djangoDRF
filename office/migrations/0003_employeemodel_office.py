@@ -7,14 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('first_app', '0002_employeemodel'),
+        ('office', '0002_employeemodel'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='employeemodel',
             name='office',
-            field=models.OneToOneField(default=2, on_delete=django.db.models.deletion.CASCADE, to='first_app.officemodel'),
+            field=models.OneToOneField(default=2, on_delete=django.db.models.deletion.CASCADE, to='office.officemodel'),
             preserve_default=False,
         ),
     ]

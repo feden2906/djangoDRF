@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('first_app', '0004_auto_20210424_2215'),
+        ('office', '0004_auto_20210424_2215'),
     ]
 
     operations = [
@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='employeemodel',
             name='offices',
-            field=models.ManyToManyField(db_column='office_employee', related_name='employee', to='first_app.OfficeModel'),
+            field=models.ManyToManyField(db_column='office_employee', related_name='employee', to='office.OfficeModel'),
         ),
     ]

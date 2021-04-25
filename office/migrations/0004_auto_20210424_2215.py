@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('first_app', '0003_employeemodel_office'),
+        ('office', '0003_employeemodel_office'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='employeemodel',
             name='offices',
-            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, related_name='employee', to='first_app.officemodel'),
+            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, related_name='employee', to='office.officemodel'),
             preserve_default=False,
         ),
     ]
