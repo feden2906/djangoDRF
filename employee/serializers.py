@@ -7,3 +7,6 @@ class EmployeeSerializer(ModelSerializer):
     class Meta:
         model = EmployeeModel
         fields = '__all__'
+        # exclude = ('offices',)
+        extra_kwargs = {'offices': {'read_only': True}}         # or 'write_only'
+

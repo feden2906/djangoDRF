@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .serializers import OfficeSerializer
+from employee.serializers import EmployeeSerializer
 from .models import OfficeModel
 
 
@@ -53,3 +54,15 @@ class OfficeRetrieveView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response('updated', status=status.HTTP_200_OK)
+
+
+class OfficeEmployeeCreateView(APIView):
+    def post(self, *args, **kwargs):
+        pk = kwargs.get('pk')
+        data = self.request.data
+        office = get_object_or_404(OfficeModel, pk=pk)
+        serializer = EmployeeSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        # serializer.save(offices_id=pk)               # <-----|  те саме
+        serializer.save(offices=office)                # <-----|
+        return Response(serializer.data)
