@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import MyApiView, ReadUpdate
+from .views import OfficeRetrieveView, OfficeListCreateView
 
 urlpatterns = [
-    path('', MyApiView.as_view(), name='myApiView'),
-    path('/<int:id>', ReadUpdate.as_view(), name='ReadUpdate')
+    path('', OfficeListCreateView.as_view(), name='office_list_create'),
+    path('/<int:id>', OfficeRetrieveView.as_view(), name='office_retrieve')
 ]
